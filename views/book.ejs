@@ -1,0 +1,45 @@
+<section class="container">
+
+
+
+    <% if ( book !=null){%>
+        <div class=" single-book">
+            <img src="/uploads/<%- book.image%>.jpg" alt="book cover page" class="card-photo">
+            <div class="info">
+
+                <p><span>Title:</span>
+                    <%- book.title%>
+                </p>
+                <p><span>SubTitle:</span>
+                    <%- book.subtitle%>
+                </p>
+                <p><span>Author:</span>
+                    <%- book.author%>
+                </p>
+                <p><span>ISBN:</span>
+                    <%- book.isbn%>
+                </p>
+                <p><span>Pages:</span>
+                    <%- book.pages%>
+                </p>
+
+                <p><span>Publisher:</span>
+                    <%- book.publisher%>
+                </p>
+                <p><span>Description:</span>
+                    <%-book.description%>
+                </p>
+                <p> <a href="<%- book.website%>" target="_blank"><span>Website:</span>
+                        <%- book.website%>
+                    </a>
+                </p>
+
+            </div>
+        </div>
+        <%} else{%>
+            <p>Sorry Book was not found</p>
+
+            <%}%>
+
+
+</section>

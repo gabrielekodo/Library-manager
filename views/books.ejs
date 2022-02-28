@@ -1,0 +1,43 @@
+<section class="container books-container">
+  <!-- <form>
+        <div>
+          <label>Name</label>
+          <input type="text" id="name">
+        </div>
+        <div><label for="email">Email</label>
+          <input type="text" id="email">
+        </div>
+        <input type="submit" value="submit">
+      </form> -->
+  <% if (typeof books !=undefined && books.length>0){%>
+
+    <% books.forEach(function(book,index){ %>
+
+      <div class="card">
+        <div class="info">
+          <p>Title: <%- book.title%>
+          </p>
+          <p>Sub-title: <%- book.subtitle%>
+          </p>
+          <p>Author:<%- book.author%>
+          </p>
+          <!-- <p>ISBN:<%- book.isbn%>
+          </p> -->
+          <p>Number of pages:<%- book.pages%>
+          </p>
+          <p><a href="/books/<%- book._id%>" class="btn">For Details</a></p>
+          <!-- <p>Publisher:<%- book.publisher%>
+          </p> -->
+          <!-- <p>Description:<%-book.description%>
+          </p> -->
+          <!-- <p> <a href="<%- book.website%>" target="_blank">Website: <%- book.website%></a>
+          </p> -->
+
+        </div>
+      </div>
+      <% }) %>
+
+        <% } %>
+
+
+</section>
