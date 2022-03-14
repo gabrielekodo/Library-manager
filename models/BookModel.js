@@ -13,7 +13,6 @@ const bookSchema = new mongoose.Schema({
   },
   author: {
     type: String,
-
     required: [true, "Author is required"],
   },
   subtitle: {
@@ -23,12 +22,10 @@ const bookSchema = new mongoose.Schema({
   },
   publisher: {
     type: String,
-
     required: [true, "Publisher is required"],
   },
   pages: {
     type: Number,
-
     required: [true, "number of pages is required"],
   },
   website: {
@@ -36,8 +33,8 @@ const bookSchema = new mongoose.Schema({
   },
   numberInStock: {
     type: Number,
-
     required: [true, "number in stock is required"],
+    select: false,
   },
   description: {
     type: String,
@@ -47,7 +44,6 @@ const bookSchema = new mongoose.Schema({
   },
   published: {
     type: Date,
-
     required: [true, "Publication date is required"],
   },
   image: {

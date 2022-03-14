@@ -3,6 +3,8 @@ const Users = require("./../models/User");
 // GET request to home page /
 const homePage = (req, res) => {
   try {
+    console.log(req.user);
+    console.log(res.locals);
     res.render("index", { title: "Libray Home page" });
   } catch (error) {
     res.status(500).json({ message: error.message });
@@ -14,9 +16,15 @@ const loadBooks = async (req, res) => {
   try {
     const books = await Books.find();
     // console.log(books);
-    res.render("books", { title: "Libray | Books List", books });
+    res
+      .status(200)
+      .json({ status: "success", Total: books.length, data: books });
   } catch (error) {
-    res.status(500).json({ message: error.message });
+    res.status(500).json({
+      status: "fail",
+
+      message: "sorry, something went wrong",
+    });
   }
 };
 
@@ -25,9 +33,9 @@ const loadSingleBook = async (req, res) => {
   try {
     const book = await Books.findById(req.params.id);
 
-    res.render("book", { title: "Searching Book", book });
+    res.status(200).json({ status: "success", data: book });
   } catch (error) {
-    res.render("pageNotFound");
+    res.status(500).json({ status: "fail", message: "something went wrong" });
   }
 };
 
@@ -45,6 +53,7 @@ const submitBook = async (req, res) => {
       website: req.body.website,
       isbn: req.body.isbn,
       numberInStock: req.body.numberInStock,
+      image: req.body.image,
     });
 
     await newBook.save();
@@ -73,7 +82,7 @@ const updateBook = async (req, res) => {
     res.redirect("/books");
   } catch (error) {
     console.log(error._message);
-    res.render("pageNotFound", { error, status: 500 });
+    res.status(500).json({ status: "fail", message: "something went wrong" });
   }
 };
 
@@ -81,7 +90,7 @@ const updateBook = async (req, res) => {
 const removeBook = async (req, res) => {
   try {
     await Books.findByIdAndDelete(req.params.id);
-    res.redirect("/books");
+    res.status(204).json({ data: null });
   } catch (error) {
     console.log(error._message);
     res.render("pageNotFound", { error, status: 500 });

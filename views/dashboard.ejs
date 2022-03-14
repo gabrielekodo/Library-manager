@@ -1,17 +1,30 @@
 <section class="container dashboard">
     <div class="sidebar">
         <div class="profile-pic">
-            <img src="/images/1.png" alt="profile picture">
+            <img src="/uploads/<% user.photo%>" alt="profile picture">
         </div>
         <ul class="dash-item-group">
             <li><a href="/books">Rent Book</a></li>
             <li><a href="#">Status</a></li>
-            <li><a href="#">Settings</a></li>
+            <li><a href="/user/me">Settings</a></li>
             <li><a href="/books">Check Latest</a></li>
             <li><a href="#">Comment</a></li>
             <li><a href="#">Share insights</a></li>
             <li><a href="/logout" class=" logout">Sign out</a></li>
         </ul>
+        <% if(user.role=='admin' ){ %>
+            <div class="admin_panel">
+                <ul class="dash-item-group">
+                    <li><a href="/books">Rent Book</a></li>
+                    <li><a href="#">Status</a></li>
+                    <li><a href="/user/me">Settings</a></li>
+                    <li><a href="/books">Check Latest</a></li>
+                    <li><a href="#">Comment</a></li>
+                    <li><a href="#">Share insights</a></li>
+                    <li><a href="/logout" class=" logout">Sign out</a></li>
+                </ul>
+            </div>
+            <%}%>
     </div>
     <div class="dash-main">
         <h1>Welcome <%- user.firstname %>

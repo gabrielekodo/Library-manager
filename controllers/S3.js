@@ -24,7 +24,7 @@ function uploadFile(file) {
     Bucket: bucketName,
     Body: fileStream,
     // Key: file.filename,
-    Key: `${Date.now()}+${file.originalname}`,
+    Key: `${file.originalname}`,
   };
   return s3.upload(uploadParams).promise();
 

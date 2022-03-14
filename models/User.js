@@ -12,9 +12,13 @@ const userSchema = new mongoose.Schema({
     required: [true, "last name is required"],
     maxlength: 15,
   },
-  email: { type: String, required: [true, "email is required"], unique: true },
+  email: {
+    type: String,
+    required: [true, "email is required"],
+    unique: true,
+  },
   photo: { type: String, default: "avatar" },
-  phone: { type: String, required: [true, "phone number required"] },
+  phone: { type: String },
   password: {
     type: String,
     required: [true, "password is required"],
@@ -25,7 +29,11 @@ const userSchema = new mongoose.Schema({
     required: [true, "Confirm password is required"],
     select: false,
   },
-  role: { type: String, enum: ["user", "admin"], default: "user" },
+  role: {
+    type: String,
+    enum: ["user", "admin", "lib-assistant"],
+    default: "user",
+  },
 });
 
 // hashing password from the user before saving into DB
