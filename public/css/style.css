@@ -177,6 +177,9 @@ nav li i {
   border-radius: 3px;
   transition: all 0.4s ease-out;
 }
+.btn-lg {
+  width: 240px;
+}
 .btn:hover {
   transform: scale(0.95);
 }

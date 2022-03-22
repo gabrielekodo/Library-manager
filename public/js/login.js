@@ -2,7 +2,7 @@ const login = async (email, password) => {
   try {
     const response = await axios({
       method: "post",
-      url: "http://localhost:8080/api/v1/users/login",
+      url: "/api/v1/users/login",
       data: { email, password },
     });
     console.log(response.data);
