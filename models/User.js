@@ -4,12 +4,12 @@ const validator = require("validator");
 const userSchema = new mongoose.Schema({
   firstname: {
     type: String,
-    required: [true, "first name is required"],
+    // required: [true, "first name is required"],
     maxlength: 15,
   },
   lastname: {
     type: String,
-    required: [true, "last name is required"],
+    // required: [true, "last name is required"],
     maxlength: 15,
   },
   email: {
@@ -26,7 +26,7 @@ const userSchema = new mongoose.Schema({
   },
   confirmPassword: {
     type: String,
-    required: [true, "Confirm password is required"],
+    // required: [true, "Confirm password is required"],
     select: false,
   },
   role: {

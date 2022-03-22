@@ -18,8 +18,6 @@ const createCookie = (res, token) => {
   res.cookie("jwt", token, cookieOptions);
 };
 
-module.exports = { registerToken, createCookie };
-
 // const addUsers = async () => {
 //   await Users.insertMany([
 //     {
@@ -205,3 +203,4 @@ module.exports = { registerToken, createCookie };
 //   ]);
 // };
 // addUsers();
+module.exports = { registerToken, createCookie };

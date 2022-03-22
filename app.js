@@ -1,9 +1,6 @@
 const express = require("express");
-const { protect } = require("./controllers/authController");
-const Books = require("./models/BookModel");
-const fs = require("fs");
-const util = require("util");
-const unlinkFile = util.promisify(fs.unlink);
+
+const cors = require("cors");
 
 const cookieParser = require("cookie-parser");
 
@@ -25,6 +22,8 @@ app.use(expressLayouts);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 app.use(cookieParser());
+
+app.use(cors());
 app.set("layout", "./layouts/main");
 app.set("view engine", "ejs");
 

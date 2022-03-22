@@ -11,7 +11,7 @@ const homePage = (req, res) => {
   }
 };
 
-// GET request to /books
+// GET request to api/v1/books
 const loadBooks = async (req, res) => {
   try {
     const books = await Books.find();
@@ -27,6 +27,22 @@ const loadBooks = async (req, res) => {
     });
   }
 };
+//ALL BOOKS LIST PAGE /books
+const booksListPage = async (req, res) => {
+  try {
+    const books = await Books.find();
+    // console.log(books);
+    res
+      .status(200)
+      .render("books", { status: "success", Title: "Book List", books });
+  } catch (error) {
+    res.status(500).render("pageNotFound", {
+      status: "fail",
+
+      message: "sorry, something went wrong",
+    });
+  }
+};
 
 // GET request to /books/id
 const loadSingleBook = async (req, res) => {
@@ -36,6 +52,18 @@ const loadSingleBook = async (req, res) => {
     res.status(200).json({ status: "success", data: book });
   } catch (error) {
     res.status(500).json({ status: "fail", message: "something went wrong" });
+  }
+};
+// GET request to single book page
+const singleBookPage = async (req, res) => {
+  try {
+    const book = await Books.findById(req.params.id);
+
+    res.status(200).render("book", { Title: book.Title, book });
+  } catch (error) {
+    res
+      .status(500)
+      .render("errors", { status: "fail", message: "something went wrong" });
   }
 };
 
@@ -104,4 +132,6 @@ module.exports = {
   loadSingleBook,
   updateBook,
   removeBook,
+  booksListPage,
+  singleBookPage,
 };

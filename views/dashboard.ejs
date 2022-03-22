@@ -1,34 +1,40 @@
 <section class="container dashboard">
     <div class="sidebar">
         <div class="profile-pic">
-            <img src="/uploads/<% user.photo%>" alt="profile picture">
+            <img src="<%- user.photo%>" alt="profile picture">
         </div>
         <ul class="dash-item-group">
             <li><a href="/books">Rent Book</a></li>
             <li><a href="#">Status</a></li>
-            <li><a href="/user/me">Settings</a></li>
+            <li><a href="/user/me/settings">Settings</a></li>
             <li><a href="/books">Check Latest</a></li>
-            <li><a href="#">Comment</a></li>
-            <li><a href="#">Share insights</a></li>
+            <li><a href="#">Account settings</a></li>
+            <li><a href="/users/me/updatepicture">Change profile picture</a></li>
             <li><a href="/logout" class=" logout">Sign out</a></li>
+            <% if(user.role=='admin' ){ %>
+                <li><a href="/books">Manage Books</a></li>
+                <li><a href="/users">Manage Users</a></li>
+                <li><a href="#">Settings</a></li>
+                <li><a href="/books">More Updates</a></li>
+                <!-- <div class="admin_panel">
+                    <ul class="dash-item-group">
+                        <li><a href="/books">Manage Books</a></li>
+                        <li><a href="/users">Manage Users</a></li>
+                        <li><a href="#">Settings</a></li>
+                        <li><a href="/books">More Updates</a></li>
+                        
+                    </ul>
+                </div> -->
         </ul>
-        <% if(user.role=='admin' ){ %>
-            <div class="admin_panel">
-                <ul class="dash-item-group">
-                    <li><a href="/books">Rent Book</a></li>
-                    <li><a href="#">Status</a></li>
-                    <li><a href="/user/me">Settings</a></li>
-                    <li><a href="/books">Check Latest</a></li>
-                    <li><a href="#">Comment</a></li>
-                    <li><a href="#">Share insights</a></li>
-                    <li><a href="/logout" class=" logout">Sign out</a></li>
-                </ul>
-            </div>
-            <%}%>
+        <%}%>
     </div>
     <div class="dash-main">
         <h1>Welcome <%- user.firstname %>
         </h1>
+        <h1>Registered Users</h1>
+
+
+
     </div>
     <div class="foot">
         &copy;2022

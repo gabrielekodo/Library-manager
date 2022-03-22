@@ -20,14 +20,32 @@
     </form>
     <script>
         const form = document.getElementById('form');
-        const file = document.getElementById('image')
+        const file = document.getElementById('image').files[0]
         form.addEventListener('submit', async e => {
             e.preventDefault()
-            console.log(file);
-            const res = await fetch('http:localhost:8080/', {
-                method: 'GET'
+            // console.log(file);
+            // 1)get secure url from server
+            const { url } = await fetch('http://localhost:8080/S3url').then(res => res.json())
+            console.log(url);
+
+            // 2)post image to S3 bucket
+            await fetch(url, {
+                method: 'PUT',
+                headers: {
+                    "Content-Type": "multipart/form-data"
+                },
+                body: file
             })
-            console.log(res);
+
+            const imageUrl = url.split('?')[0]
+            console.log(imageUrl);
+            // 3) post any extra data to database
+
+            const img = document.createElement('img')
+            img.src = imageUrl
+            document.body.appendChild(img)
+
+
         })
 
         // console.log(file);

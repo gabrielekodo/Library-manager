@@ -1,0 +1,32 @@
+<section class="container books-container">
+
+
+
+    <% if (typeof users !=undefined && users.length>0){%>
+
+        <% users.forEach(function(user,index){ %>
+
+            <div class="card">
+                <div class="profile-pic">
+                    <img src="<%- user.photo%>" alt="profile picture">
+                </div>
+                <div class="info">
+                    <p>First Name: <%- user.firstname%>
+                    </p>
+                    <p>Last Name: <%- user.lastname%>
+                    </p>
+                    <p>Email: <%- user.email%>
+                    </p>
+                    <p>Phone:<%- user.phone%>
+                    </p>
+
+
+
+                </div>
+            </div>
+            <% }) %>
+
+                <% } %>
+
+
+</section>

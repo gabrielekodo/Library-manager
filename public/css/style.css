@@ -421,6 +421,12 @@ span {
   align-items: center;
   margin: 7px;
 }
+.check a {
+  text-decoration: none;
+}
+.check a:hover {
+  text-decoration: underline;
+}
 
 .check input {
   margin: 5px;

@@ -25,7 +25,7 @@ const login = async (req, res) => {
 
     tokens.createCookie(res, token);
 
-    res.status(200).json({ status: "success", token });
+    res.status(200).json({ status: "success", token, user });
     // res.redirect("/users/dashboard");
   } catch (error) {
     res.status(500).json({ status: "fail", message: "Something went wrong" });
@@ -127,6 +127,7 @@ const loggedIn = async (req, res, next) => {
 };
 
 const logout = (req, res, next) => {
+  // res.clearCookie("jwt");
   res.cookie("jwt", "loggedout", {
     expires: new Date(Date.now() + 5 * 1000),
     httpOnly: true,

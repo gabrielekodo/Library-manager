@@ -1,0 +1,31 @@
+<div class="register-container">
+
+    <h1>EKOGAB BOOKS CENTER</h1>
+    <div class="login-form">
+        <!-- <h3 class="login-header">post picture</h3>
+        <form action="/uploads" method="post" enctype="multipart/form-data" id="form">
+
+            <div class="form-control">
+
+                <label for="image">Upload image</label>
+                <input type="file" name="image" id="image" accept="*" required>
+            </div>
+
+            <input type="submit" value="upload">
+        </form>
+
+        <img src="/uploads/1646052137239+gabby-logo.JPG" alt="image"> -->
+        <h1>Upload Your picture here </h1>
+        <form id="form" action="/users/me/updatepicture" method="post" enctype="multipart/form-data">
+            <label for="image">Picture</label>
+            <br>
+            <input type="file" name="image" id="image" accept="image/*">
+            <br>
+            <br>
+            <input type="submit" value="Upload">
+        </form>
+
+
+    </div>
+
+</div>

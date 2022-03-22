@@ -1,3 +1,9 @@
+const upload = require("./imageUpload");
+const singleUpload = upload.single("image");
+
+const multer = require("multer");
+const multerS3 = require("multer-s3");
+
 const tokens = require("./../utils/tokens");
 const Users = require("./../models/User");
 const Books = require("./../models/BookModel");
@@ -81,6 +87,19 @@ const userDashboard = async (req, res) => {
     res.render("pageNotFound", { error });
   }
 };
+// GET all users /allUsersPage
+const allUsersPage = async (req, res) => {
+  try {
+    const users = await Users.find();
+
+    const books = await Books.find();
+
+    res.render("users", { users, books });
+  } catch (error) {
+    console.log(error);
+    res.render("pageNotFound", { error });
+  }
+};
 
 // USER SIGN UP /Register post
 const signUpUser = async (req, res) => {
@@ -109,6 +128,30 @@ const signUpUser = async (req, res) => {
   }
 };
 
+// UPLOAD PROFILE PICTURE
+const uploadProfilePicture = (req, res) => {
+  const uid = req.user.id;
+
+  singleUpload(req, res, function (err) {
+    if (err) {
+      return res.json({
+        success: false,
+        errors: {
+          title: "Image Upload Error",
+          detail: err.message,
+          error: err,
+        },
+      });
+    }
+    console.log(req.file);
+    let update = { photo: req.file.location };
+
+    Users.findByIdAndUpdate(uid, update, { new: true })
+      .then((user) => res.status(200).json({ success: true, user: user }))
+      .catch((err) => res.status(400).json({ success: false, error: err }));
+  });
+};
+
 module.exports = {
   loginPage,
   userDashboard,
@@ -118,4 +161,6 @@ module.exports = {
   signUpUser,
   deleteUser,
   updateUser,
+  uploadProfilePicture,
+  allUsersPage,
 };
