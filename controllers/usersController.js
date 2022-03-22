@@ -143,11 +143,11 @@ const uploadProfilePicture = (req, res) => {
         },
       });
     }
-    console.log(req.file);
+
     let update = { photo: req.file.location };
 
     Users.findByIdAndUpdate(uid, update, { new: true })
-      .then((user) => res.status(200).json({ success: true, user: user }))
+      .then((user) => res.redirect("/users/me"))
       .catch((err) => res.status(400).json({ success: false, error: err }));
   });
 };
